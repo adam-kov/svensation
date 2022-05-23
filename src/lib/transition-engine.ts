@@ -5,7 +5,8 @@ import type {
 	Frame,
 	FrameElement,
 	FrameElementType,
-	TransitionElement
+	TransitionElement,
+	FadedElement
 } from '.'
 
 export class TransitionEngine {
@@ -56,11 +57,28 @@ export class TransitionEngine {
 		})
 		this._destinationFrame.element.src = nav.to.href
 		await destinationLoaded
-		this._setTransitionElements()
-		const fadedElements = await this._applyTransitions()
 
-		goto(nav.to.href).then(() => {
+		this._setTransitionElements()
+		if (!Object.keys(this._transitionElements).length) {
+			this._navigate(nav.to.href)
+			return
+		}
+
+		const fadedElements = await this._applyTransitions()
+		this._navigate(nav.to.href, fadedElements)
+	}
+
+	static afterNavigate = () => {
+		this._transitionElements = {}
+		this._destinationFrame?.remove()
+		this._isDestinationLoaded = false
+	}
+
+	private static _navigate = (href: string, fadedElements?: FadedElement[]) => {
+		goto(href).then(() => {
 			this._sourceFrame.remove()
+			if (!fadedElements) return
+
 			fadedElements.forEach((elem) => {
 				elem.element
 					.animate([{ opacity: '0' }, { opacity: elem.opacity }], {
@@ -70,12 +88,6 @@ export class TransitionEngine {
 					.persist()
 			})
 		})
-	}
-
-	static afterNavigate = () => {
-		this._transitionElements = {}
-		this._destinationFrame?.remove()
-		this._isDestinationLoaded = false
 	}
 
 	private static _setTransitionElementsPart = (
@@ -192,11 +204,12 @@ export class TransitionEngine {
 
 	private static _setTransitionElements = () => {
 		const sourceElements = document.body.querySelectorAll(`[${this.transitionAttributeName}]`)
+		if (!sourceElements.length) return
 		const destinationElements =
 			this._destinationFrame.element.contentWindow?.document?.body.querySelectorAll(
 				`[${this.transitionAttributeName}]`
 			)
-		if (!sourceElements.length || !destinationElements?.length) return
+		if (!destinationElements?.length) return
 
 		this._setTransitionElementsPart(sourceElements, 'from')
 		this._setTransitionElementsPart(destinationElements, 'to')
@@ -272,7 +285,8 @@ export class TransitionEngine {
 	}
 
 	private static _fadeOutSource = () => {
-		const elementOpacities: { element: HTMLElement; opacity: string }[] = []
+		const elementOpacities: FadedElement[] = []
+
 		for (let i = 0; i < document.body.children.length; i++) {
 			const element = document.body.children.item(i) as HTMLElement
 			if (
