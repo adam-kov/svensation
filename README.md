@@ -14,9 +14,9 @@ npm i -D svensation
 
 In a `__layout.svelte` file for example
 
-```html
+```svelte
 <script>
-  import Svensation from 'svensation'
+	import Svensation from 'svensation';
 </script>
 
 <slot />
@@ -25,48 +25,48 @@ In a `__layout.svelte` file for example
 
 **Configure it if you want to**
 
-```html
+```svelte
 <Svensation
-  transitionAttributeName={'sn-transition'}
-  transitionDuration={500}
-  fadeDuration={200}
-  loadTimeout={3000}
+	transitionAttributeName={'sn-transition'}
+	transitionDuration={500}
+	fadeDuration={200}
+	loadTimeout={3000}
 />
 ```
 
-> The example values are the defaults, see more in the [Props section](https://github.com/n00pper/svensation#props)
+> The example values are the defaults, see more in the [Props section](#props)
 
 **Then mark the elements you want to be transitioned**
 
 Elements on different pages with the same ID will be transitioned over to one another
 
-```html
+```svelte
 <!--
   File:  src/routes/items/index.svelte
   Route: /items
 -->
 <ul>
-  {#each items as item}
-    <li sn-transition={item.id + '-background'}>
-      <a href={item.id}>
-        <img src={item.image} sn-transition={item.id}>
-        <div>
-          {item.name}
-        </div>
-      </a>
-    </li>
-  {/each}
+	{#each items as item}
+		<li sn-transition={item.id + '-background'}>
+			<a href={item.id}>
+				<img src={item.image} sn-transition={item.id} />
+				<div>
+					{item.name}
+				</div>
+			</a>
+		</li>
+	{/each}
 </ul>
 ```
 
-```html
+```svelte
 <!--
   File:  src/routes/items/{id}.svelte
   Route: /items/{id}
 -->
 <div sn-transition={item.id + '-background'}>
-  <h1>{item.name}</h1>
-  <img src={item.image} sn-transition={item.id}>
+	<h1>{item.name}</h1>
+	<img src={item.image} sn-transition={item.id} />
 </div>
 ```
 
@@ -74,12 +74,12 @@ Elements on different pages with the same ID will be transitioned over to one an
 
 ## Props
 
-| Name | Description | Type | Default |
-| ----------- | ----------- | ----------- | ----------- |
-| transitionAttributeName | The name of the attribute that will receive the IDs | `string` | `'sn-transition'` |
-| transitionDuration | The length of transitioning the elements **in milliseconds** | `number` | `300` |
-| fadeDuration | The length of fading out the current page and fading in the next page **in milliseconds** | `number` | `200` |
-| loadTimeout | The maximum time to wait to load the next page **in milliseconds** | `number` | `3000` |
+| Name                    | Description                                                                               | Type     | Default           |
+| ----------------------- | ----------------------------------------------------------------------------------------- | -------- | ----------------- |
+| transitionAttributeName | The name of the attribute that will receive the IDs                                       | `string` | `'sn-transition'` |
+| transitionDuration      | The length of transitioning the elements **in milliseconds**                              | `number` | `300`             |
+| fadeDuration            | The length of fading out the current page and fading in the next page **in milliseconds** | `number` | `200`             |
+| loadTimeout             | The maximum time to wait to load the next page **in milliseconds**                        | `number` | `3000`            |
 
 ## Navigation timeline
 
