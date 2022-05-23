@@ -8,6 +8,7 @@
     "dev": "svelte-kit dev --open",
     "build": "svelte-kit build",
     "package": "svelte-kit package",
+		"pub": "npm publish package",
     "preview": "svelte-kit preview --open",
     "prepare": "svelte-kit sync",
     "check": "svelte-check --tsconfig ./tsconfig.json",
