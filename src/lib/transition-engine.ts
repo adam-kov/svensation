@@ -77,6 +77,7 @@ export class TransitionEngine {
 	private static _navigate = (href: string, fadedElements?: FadedElement[]) => {
 		goto(href).then(() => {
 			this._sourceFrame?.remove()
+			this._destinationFrame?.remove()
 			if (!fadedElements) return
 
 			fadedElements.forEach((elem) => {
