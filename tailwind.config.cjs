@@ -48,6 +48,7 @@ const config = {
         },
 				pre: {
           backgroundColor: theme('colors.slate.200'),
+					margin: `${theme('margin.4')} 0`,
 					padding: `${theme('padding.4')} ${theme('padding.6')}`,
 					borderRadius: '1rem',
 					textAlign: 'left'
@@ -97,8 +98,11 @@ const config = {
 					whiteSpace: 'nowrap',
 					textOverflow: 'ellipsis',
 				},
+				'.h-min-content': {
+					minHeight: 'calc(100vh - 60px)'
+				},
 				'.h-max-content': {
-					minHeight: 'calc(100vh - 52px)'
+					maxHeight: 'calc(100vh - 60px)'
 				},
 			});
     }),
