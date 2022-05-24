@@ -1,0 +1,12 @@
+th {
+	padding: 0.25rem 0.5rem;
+	border-bottom: 2px solid #e2e8f0;
+}
+
+tr:nth-child(even) {
+	background-color: #f1f5f9;
+}
+
+td {
+	padding: 0.25rem 0.5rem;
+}

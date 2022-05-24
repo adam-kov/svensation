@@ -12,7 +12,9 @@
 		"strictNullChecks": false,
 		"paths": {
 			"$lib": ["src/lib"],
-			"$lib/*": ["src/lib/*"]
+			"$lib/*": ["src/lib/*"],
+			"$doc": ["src/doc"],
+			"$doc/*": ["src/doc/*"]
 		}
 	}
 }

@@ -76,7 +76,8 @@ export class TransitionEngine {
 
 	private static _navigate = (href: string, fadedElements?: FadedElement[]) => {
 		goto(href).then(() => {
-			this._sourceFrame.remove()
+			this._sourceFrame?.remove()
+			this._destinationFrame?.remove()
 			if (!fadedElements) return
 
 			fadedElements.forEach((elem) => {
@@ -209,7 +210,10 @@ export class TransitionEngine {
 			this._destinationFrame.element.contentWindow?.document?.body.querySelectorAll(
 				`[${this.transitionAttributeName}]`
 			)
-		if (!destinationElements?.length) return
+		if (!destinationElements?.length) {
+			this._destinationFrame?.remove()
+			return
+		}
 
 		this._setTransitionElementsPart(sourceElements, 'from')
 		this._setTransitionElementsPart(destinationElements, 'to')
