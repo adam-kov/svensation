@@ -11,9 +11,9 @@
 
 ## Props
 
-| Name                    | Description                                                                               | Type     | Default           |
-| ----------------------- | ----------------------------------------------------------------------------------------- | -------- | ----------------- |
+| Name                    | Description                                                                               |   Type   |      Default      |
+| ----------------------- | ----------------------------------------------------------------------------------------- | :------: | :---------------: |
 | transitionAttributeName | The name of the attribute that will receive the IDs                                       | `string` | `'sn-transition'` |
-| transitionDuration      | The length of transitioning the elements **in milliseconds**                              | `number` | `300`             |
-| fadeDuration            | The length of fading out the current page and fading in the next page **in milliseconds** | `number` | `200`             |
-| loadTimeout             | The maximum time to wait to load the next page **in milliseconds**                        | `number` | `3000`            |
+| transitionDuration      | The length of transitioning the elements **in milliseconds**                              | `number` |       `300`       |
+| fadeDuration            | The length of fading out the current page and fading in the next page **in milliseconds** | `number` |       `200`       |
+| loadTimeout             | The maximum time to wait to load the next page **in milliseconds**                        | `number` |      `3000`       |

@@ -1,4 +1,5 @@
 <script lang="ts">
+	import '../markdown.css'
 	import { goto } from '$app/navigation'
 	import { page } from '$app/stores'
 	import { ChevronLeft, ChevronRight } from 'lucide-svelte'
@@ -29,9 +30,9 @@
 			url: '/configuration',
 			title: 'Configuration'
 		},
-		{
-			title: 'Examples'
-		},
+		// {
+		// 	title: 'Examples'
+		// },
 	]
 	let currentPage: CurrentPage, prevPage: Page, nextPage: Page
 
@@ -80,7 +81,7 @@
 			{/if}
 		{/each}
 	</Menu>
-	<main class="relative p-4 pt-0 w-full h-max-content overflow-y-auto">
+	<main class="relative p-4 pt-0 w-full max-w-[1000px] mx-auto h-max-content overflow-y-auto">
 		<div class="sticky top-0 bg-slate-50 flex flex-wrap-reverse justify-between mb-6 py-2">
 			{#if prevPage}
 				<button class="btn ml-0" on:click={prev}>

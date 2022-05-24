@@ -2,6 +2,7 @@
 	import '../app.css'
 	import { fade } from 'svelte/transition'
 	import { goto } from '$app/navigation'
+	import { FileText } from 'lucide-svelte'
 	import Svensation from '$lib/index'
 	import { Header } from '$doc'
 
@@ -44,7 +45,8 @@
 		</div>
 		<h2 class="mb-4 text-center">Check out the documentation</h2>
 		<button class="btn" on:click={() => goto('/docs')}>
-			See the docs
+			<span class="pr-1">See the docs</span>
+			<FileText size={20} />
 		</button>
 	</div>
 </main>
