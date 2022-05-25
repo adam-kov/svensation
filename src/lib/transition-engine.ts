@@ -48,15 +48,24 @@ export class TransitionEngine {
 
 		this._createDestinationFrame()
 		const destinationLoaded = new Promise((resolve, reject) => {
-			const timeout = setTimeout(reject, this.loadTimeout)
+			let timeout: NodeJS.Timeout
+			if(this.loadTimeout) {
+				timeout = setTimeout(() => {
+					this._sourceFrame?.remove()
+					this._destinationFrame?.remove()
+					reject()
+				}, this.loadTimeout)
+			}
 			this._destinationFrame.element.onload = () => {
 				clearTimeout(timeout)
 				this._isDestinationLoaded = true
-				resolve(undefined)
+				resolve('destination loaded')
 			}
 		})
 		this._destinationFrame.element.src = nav.to.href
-		await destinationLoaded
+		try {
+			await destinationLoaded
+		} catch (error) { undefined }
 
 		this._setTransitionElements()
 		if (!Object.keys(this._transitionElements).length) {
