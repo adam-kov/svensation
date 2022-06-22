@@ -1,5 +1,6 @@
 <script lang="ts">
 	import '../markdown.css'
+	import '../prism-theme.css'
 	import { goto } from '$app/navigation'
 	import { page } from '$app/stores'
 	import { ChevronLeft, ChevronRight } from 'lucide-svelte'
@@ -82,7 +83,7 @@
 		{/each}
 	</Menu>
 	<main class="relative p-4 pt-0 w-full max-w-[1000px] mx-auto h-max-content overflow-y-auto">
-		<div class="sticky top-0 bg-slate-50 flex flex-wrap-reverse justify-between mb-6 py-2">
+		<div class="sticky z-40 top-0 bg-slate-50 flex flex-wrap-reverse justify-between mb-6 py-2">
 			{#if prevPage}
 				<button class="btn ml-0" on:click={prev}>
 					<ChevronLeft />

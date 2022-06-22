@@ -46,13 +46,14 @@ const config = {
           fontWeight: theme('fontWeight.bold'),
 					lineHeight: theme('lineHeight.snug'),
         },
-				pre: {
-          backgroundColor: theme('colors.slate.200'),
+				blockquote: {
+          backgroundColor: theme('colors.slate.100'),
 					margin: `${theme('margin.4')} 0`,
 					padding: `${theme('padding.4')} ${theme('padding.6')}`,
 					borderRadius: '1rem',
-					textAlign: 'left'
-				}
+					textAlign: 'left',
+					border: `1px solid ${theme('colors.slate.200')}`
+				},
       });
 
 			addComponents({
